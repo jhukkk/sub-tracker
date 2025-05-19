@@ -7,7 +7,7 @@ export const createSubscription = async (req, res, next) => {
             user: req.user._id,
         });
 
-        return res.status(201).json({ success: true, data: subscription });
+        res.status(201).json({ success: true, data: subscription });
     } catch(error) {
         next(error);
     }
@@ -24,7 +24,25 @@ export const getUserSubscriptions = async (req, res, next) => {
 
         const subscriptions = await Subscription.find({ user: req.params.id });
 
-        return res.status(200).json({ success: true, data: subscriptions });
+        res.status(200).json({ success: true, data: subscriptions });
+    } catch(error) {
+        next(error);
+    }
+}
+
+export const getSubscriptions = async (req, res, next) => {
+    try {
+        const subscriptions = await Subscription.find();
+
+        res.status(200).json({ success: true, data: subscriptions });
+    } catch(error) {
+        next(error);
+    }
+}
+
+export const getSubscriptionDetails = async (req, res, next) => {
+    try {
+        
     } catch(error) {
         next(error);
     }
